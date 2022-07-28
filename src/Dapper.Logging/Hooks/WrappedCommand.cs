@@ -34,7 +34,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.CommandExecuted(this, _context, sw.ElapsedMilliseconds);
+                _hooks.CommandExecuted(this, _context, sw.Elapsed);
             }
         }
 

@@ -28,7 +28,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.ConnectionClosed(this, _context, sw.ElapsedMilliseconds);
+                _hooks.ConnectionClosed(this, _context, sw.Elapsed);
             }
         }
 
@@ -41,7 +41,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.ConnectionOpened(this, _context, sw.ElapsedMilliseconds);
+                _hooks.ConnectionOpened(this, _context, sw.Elapsed);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Dapper.Logging.Hooks
             }
             finally
             {
-                _hooks.ConnectionOpened(this, _context, sw.ElapsedMilliseconds);
+                _hooks.ConnectionOpened(this, _context, sw.Elapsed);
             }
         }
 
