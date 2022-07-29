@@ -10,11 +10,17 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Dapper.Logging.Tests
 {
     public class LoggingTests
     {
+        public LoggingTests(ITestOutputHelper helper)
+            => Helper = helper;
+
+        public ITestOutputHelper Helper { get; set; }
+
         [Fact]
         public void Should_log_opening_of_connection()
         {
@@ -101,9 +107,17 @@ namespace Dapper.Logging.Tests
             logger.Messages.Should().HaveCount(1);
             logger.Messages[0].Text.Should().Contain("query");
             logger.Messages[0].State.Should().ContainKey("params");
-            logger.Messages[0].State["params"].Should().BeOfType<string>();
-            logger.Messages[0].State["params"].ToString().Should().Contain("id");
-            logger.Messages[0].State["params"].ToString().Should().Contain("1");
+
+            if (logger.Messages[0].State["params"] is Dictionary<string, object> paramsDict) {
+                //Microsoft.Extensions.Logging v6.0 changed State values from a String to a Dictionary<string, object>
+                paramsDict.Should().ContainKey("@id");
+                paramsDict["@id"].Should().Be("1");
+            } else  {
+                //Earlier versions of Microsoft.Extensions.Logging store State values as a string, e.g. in this case: "[@id, 1]"
+                logger.Messages[0].State["params"].Should().BeOfType<string>();
+                logger.Messages[0].State["params"].ToString().Should().Contain("id");
+                logger.Messages[0].State["params"].ToString().Should().Contain("1");
+            }
         }
         
         [Fact]
@@ -148,9 +162,17 @@ namespace Dapper.Logging.Tests
             logger.Messages.Should().HaveCount(1);
             logger.Messages[0].Text.Should().Contain("query");
             logger.Messages[0].State.Should().ContainKey("params");
-            logger.Messages[0].State["params"].Should().BeOfType<string>();
-            logger.Messages[0].State["params"].ToString().Should().Contain("id");
-            logger.Messages[0].State["params"].ToString().Should().Contain("1");
+
+            if (logger.Messages[0].State["params"] is Dictionary<string, object> paramsDict) {
+                //Microsoft.Extensions.Logging v6.0 changed State values from a String to a Dictionary<string, object>
+                paramsDict.Should().ContainKey("@id");
+                paramsDict["@id"].Should().Be("1");
+            } else {
+                //Earlier versions of Microsoft.Extensions.Logging store State values as a string, e.g. in this case: "[@id, 1]"
+                logger.Messages[0].State["params"].Should().BeOfType<string>();
+                logger.Messages[0].State["params"].ToString().Should().Contain("id");
+                logger.Messages[0].State["params"].ToString().Should().Contain("1");
+            }
         }
     }
 }
