@@ -12,7 +12,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/hryz/Dapper.Logging</RepositoryUrl>
     <PackageTags>Dapper Logging</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageVersion>0.5.0.0</PackageVersion>
     <PackageReleaseNotes>Log failed queries, log null parameters explicitly</PackageReleaseNotes>
   </PropertyGroup>
